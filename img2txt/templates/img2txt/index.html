@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Image to Text{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+<h1>Welcome, you can extract text from images <a href="{% url 'img2txt:extract_text' %}">here</a></h1>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Image to Text{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+
+  <h2 class='mb-5'>Extract text from images</h2>
+
+  <form 
+    action="{% url 'img2txt:extract_text' %}" 
+    method="post" 
+    class='uniForm' 
+    novalidate
+    enctype='multipart/form-data' 
+    >
+    {% csrf_token %}
+    {{ formset|crispy }}
+    <p class='mt-3'><input type="submit" value="Upload" class='btn btn-outline-dark btn-lg'></p>
+  </form>
+
+  <div class="mt-5">
+    {% if msg %}
+    <div class="alert alert-dark" role="alert">
+      {{ msg }}
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="mt-5">
+    {% if texts %}
+    <p> <b>The extracted text from the image is: </b></p>
+    <ul>
+    {% for text in texts %}
+    <li class='mb-3'>{{ text }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+
+
+</div>
+
+{% endblock %}
